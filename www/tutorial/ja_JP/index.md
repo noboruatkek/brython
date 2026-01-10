@@ -30,7 +30,7 @@ In the text editor, create an HTML page with the following content:
 <script type="text/python">
 from browser import document
 
-document <= "Hello !"
+document <= "こんにちは !"
 </script>
 
 
@@ -39,8 +39,10 @@ document <= "Hello !"
 </html>
 ```
 
+空のディレクトリを作成し、このページを __`index.html`__　として保存しましょう。このファイルをブラウザで閲覧するのに二つの方法があります。
 In an empty directory, save this page as __`index.html`__. To read it in the browser, you have two options:
 
+- 「ファイル／開く」メニュー：
 - use the File/Open menu: it is the most simple solution. It brings [some limitations](/static_doc/en/file_or_http.html) for an advanced use, but it works perfectly for this tutorial
 - launch a web server : for instance, if the Python interpreter available from python.org is available on your machine, run `python -m http.server` in the file directory, then enter _localhost:8000/index.html_ in the browser address bar
 
