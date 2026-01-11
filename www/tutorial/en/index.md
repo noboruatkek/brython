@@ -109,7 +109,7 @@ Drawing the calculator
 ======================
 We can draw our calculator as an HTML table.
 
-The first line is made of the result zone, followed by a reset button. The next 3 lines are the calculator touches, digits and operations.
+The first line is made of the result zone, followed by a reset button. The next 4 lines are the calculator touches, digits and operations.
 
 ```python
 from browser import document, html
