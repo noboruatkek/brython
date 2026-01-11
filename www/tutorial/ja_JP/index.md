@@ -117,16 +117,35 @@ Tag attributes are passed as keyword arguments to the function:
 ```python
 html.A("Brython", href="http://brython.info")
 ```
-　　　　　　　　　　　　　　　　　　　　　　　　　
+
+電卓の描画
+======================
+電卓をHTMLのテーブルとして描画しましょう。
+We can draw our calculator as an HTML table.
+
+最初の行は結果を表示する領域です。リセットボタンが付いています。次の4行には  数字と演算記号のボタンが入ります。
+The first line is made of the result zone, followed by a reset button. The next 4 lines are the calculator touches, digits and operations.
+
+```python
+from browser import document, html
+
+calc = html.TABLE()
+calc <= html.TR(html.TH(html.DIV("0", id="result"), colspan=3) +
+                html.TD("C", id="clear"))
+
+lines = ["789/",
+         "456*",
+         "123-",
+         "0.=+"]
 calc <= (html.TR(html.TD(x) for x in line) for line in lines)
 
 document <= calc
 ```
+
 Pythonの生成子を使う事で、読みやすさを損なうことなくプログラムのサイズを短くできます。
 Note the use of Python generators to reduce the program size, while keeping it readable.
 
 ここで電卓の見映えをよくするために `<TD>` タグに　スタイルシートを使って 装飾をつけましょう。
-
 Let's add style to the `<TD>` tags in a stylesheet so that the calculator looks better:
 
 ```xml
@@ -153,27 +172,35 @@ td{
 </style>
 ```
 
-Event handling
-==============
+エベントの取り扱い　Event handling
+==========================================
+次のステップは利用者が電卓のボタンを押した時に行うべき動作を起動することです。
 The next step is to trigger an action when the user presses the calculator touches:
 
+- ボタンの種類 :　実行される動作
+- 数字と演算記号：数字あるいは演算記号を結果の領域に印刷します。
+- `=` 記号: 操作を実行し、結果を表示部分に印刷します。入力が適切でない場合には、エラーメッセージを表示します。
+- `C` ボタン: 表示領域をリセットします。
 - for digits and operations : print the digit or operation in the result zone
 - for the = sign : execute the operation and print the result, or an error message if the input is invalid
 - for the C letter : reset the result zone
 
+ページに表示されている要素を取り扱うためには、プログラムはまずこれらの要素への参照を入手する必要があります。
+ボタンは `<TD>` タグを使って作成されましたので、これらの全てのタグへの参照を入手するためにh、次の文法を使います。
 To handle the elements printed in the page, the program need first to get a reference to them. The buttons have been created as `<TD>` tags; to get a reference to all these tags, the syntax is
 
 ```python
 document.select("td")
 ```
-
+`select` メソッドに渡された引数は　_CSS セレクタ_ です。　よく使われる　_CSS セレクタ_ には： タグの名前("tag"),
+要素の `id` 属性("#result") あるいは クラス属性(".classname")があります。`select()` の呼び出しの戻り値は常に要素のリストです。
 The argument passed to the `select()` method is a _CSS selector_. The most usual ones are: a tag name ("td"), the element's `id` attribute ("#result") or its attribute "class" (".classname"). The result of `select()` is always a list of elements.
 
+ページ上の要素に対して発生するエベントは正規化された名前を持っています。要素をクリックした場合には、"click"という名前のエベントが起動されます。
 The events that can occur on the elements of a page have a normalized name: when the user clicks on a button, the event called "click" is triggered. In the program, this event will provoque the execution of a function. The association betweeen element, event and function is defined by the syntax
 
 ```python
 element.bind("click", action)
-```
 
 For the calculator, we can associate the same function to the "click" event on all buttons by:
 
