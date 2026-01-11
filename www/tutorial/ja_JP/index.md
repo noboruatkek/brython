@@ -8,7 +8,6 @@ You will need a text editor, and of course a browser with Internet access.
 The contents of this tutorial assume that you have at least a basic knowledge of HTML (general page structure, most usual tags), of stylesheets (CSS) and of the Python language.
 
 まず、最初にテキストエディタを使って次の内容のHTMLページを作成しましょう。
-
 In the text editor, create an HTML page with the following content:
 
 ```xml
@@ -30,8 +29,7 @@ In the text editor, create an HTML page with the following content:
 <script type="text/python">
 from browser import document
 
-document <= "こんにちは !"
-</script>
+document <= "こんにちは！"
 
 
 </body>
@@ -42,24 +40,27 @@ document <= "こんにちは !"
 空のディレクトリを作成し、このページを __`index.html`__　として保存しましょう。このファイルをブラウザで閲覧するのに二つの方法があります。
 In an empty directory, save this page as __`index.html`__. To read it in the browser, you have two options:
 
-- 「ファイル／開く」メニュー：
+- 「ファイル／開く」メニューを利用sるl： これは最も簡単な方法です。この方法は、進んだユーザにとっては、 [ちょっとした制限](/static_doc/en/file_or_http.html) がありまが、このチュートリアルを実行するには十分な方法です。
 - use the File/Open menu: it is the most simple solution. It brings [some limitations](/static_doc/en/file_or_http.html) for an advanced use, but it works perfectly for this tutorial
+- チュートリアル用のウェブサーバーを立ち上げる。：例えば、python.org で提供されているPython言語を実行する環境が整っていれば、`python -m http.server` を作業用ディレクトリで実行しdてみましょう。サーバが立ち上がったら、ブラウザのアドレス欄に　_localhost:8000/index.html_　を入力します。
 - launch a web server : for instance, if the Python interpreter available from python.org is available on your machine, run `python -m http.server` in the file directory, then enter _localhost:8000/index.html_ in the browser address bar
-
+ページを開くと、ブラウザウィンドウには"こんにちは！"の文字が表示されるはずです。
 When you open the page, you should see the message "Hello !" printed on the browser window.
 
-Page structure
-==============
+ページの構造　(Page structure)
+============================
+さあ、ページの中身の詳細を見ていきましょう。 `<head>` ゾーンの中では　javascript　のフィルド__`brython.js`__をロードしています。：これはBrythonを実行する中心機関です。このページの中のPythonスクリプトを見つけ出し、実行します。この例ではこれをCDNから入手してい流ので、PCにこれをインストールする必要はありません。バージョン番号((`brython@{implementation}`))についての注意: 新しいバージョンのBrythonに合わせて更新する事が可能です。
 Let's take a look at the page contents. In the `<head>` zone we load the script __`brython.js`__ : it is the Brython engine, the program that will find and execute the Python scripts included in the page. In this example we get it from a CDN, so that there is nothing to install on the PC. Note the version number (`brython@{implementation}`) : it can be updated for each new Brython version.
 
+この　__`index.html`__　の中には次のスクリプトが記述されいます。
 Our __`index.html`__ page embeds this script:
 
 ```python
 from browser import document
 
-document <= "Hello !"
+document <= ""こんにちは !"
 ```
-
+kore 
 This is a standard Python program, starting by the import of a module, __`browser`__ (in this case, a module shipped with the Brython engine __`brython.js`__). The module has an attribute `document` which references the content displayed in the browser window.
 
 To add a text to the document - concretely, to display a text in the browser - the syntax used by Brython is
@@ -73,7 +74,11 @@ You can think of the `<=` sign as a left arrow : the document "receives" a new e
 For this specific case, those who are not at ease with the use of the operator `<=` can use the method `attach()` of DOM elements instead:
 
 ```python
-document.attach("Hello !")
+document.attach(""こんにちは！
+
+
+
+ !")
 ```
 
 Text formatting with HTML tags
