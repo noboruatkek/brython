@@ -60,51 +60,52 @@ from browser import document
 
 document <= ""こんにちは !"
 ```
-kore 
+この部分は、標準的なPythonプログラムに従って、モジュール　 __`browser`__ (この例では、モジュールはBrythoの中心部分　 __`brython.js`__　と共に配布されている）をインポート(import)することからはじめれれています。このモジュールには、ブラウザの窓のなかに表示される構成要素を参照する `document` が定義されています。
 This is a standard Python program, starting by the import of a module, __`browser`__ (in this case, a module shipped with the Brython engine __`brython.js`__). The module has an attribute `document` which references the content displayed in the browser window.
-
+ドキュメントにテキストを追加する、即ちブラウザ中でテキストを表示するのに、Brythonでは次の文法を使います。
 To add a text to the document - concretely, to display a text in the browser - the syntax used by Brython is
 
 ```python
-document <= "Hello !"
+document <= "こんにちは !"
 ```
-
+記号 ｀<=` は左向きの矢印と考えて良いでしょう。：　ウェブの文書(document)は新しい要素、ここでは"こんにちは !"という文字列です、を受け取ります。後で見るように、Brythonではウェブ文書とのやりとりを標準的なDOMの文法を使って記述することが可能です。　Brythonではプログラムが冗長になり過ぎないように、いくつかの短縮記法(ショートカット)が用意されています。
 You can think of the `<=` sign as a left arrow : the document "receives" a new element, here the string "Hello !". You will see later that it is always possible to use the standardized DOM syntax to interact with the page, but Brython provides a few shortcuts to make the code less verbose.
 
+特にこの例では、記号 `<=` を使うことに躊躇する場合には標準的なDOM要素の `attach` メソッドを使えます。
 For this specific case, those who are not at ease with the use of the operator `<=` can use the method `attach()` of DOM elements instead:
 
 ```python
-document.attach(""こんにちは！
-
-
-
- !")
+document.attach("こんにちは !")
 ```
 
-Text formatting with HTML tags
-==============================
+HTMLタグを使ったテキストの整形　Text formatting with HTML tags
+============================================================
+HTMLでは　__太字__　や　_イタリック体_ などの文字の整形に タグ( `<B>` : __太字__, `<I>` : _イタリック体_  など
+)を使えます。(訳註：これらのタグを使うよりも 意味を持ったタグ　や　CSS  を使うことが推奨されています）
 HTML tags allow text formatting, for instance to write it in bold letters (`<B>` tag), in italic (`<I>`), etc.
 
+Brythonでは　それらのタグは　__`browser`__ パッケージ中の __`html`__ モジュールの中で、関数として利用可能となっています。　次の例をご覧ください：
 With Brython, these tags are available as functions defined in module __`html`__ of the __`browser`__ package. Here is how to use it:
 
 ```python
 from browser import document, html
 
-document <= html.B("Hello !")
+document <= html.B("こんにちは !")
 ```
 
+タグを入れ子にして使うこも可能です。
 Tags can be nested:
 
 ```python
-document <= html.B(html.I("Hello !"))
+document <= html.B(html.I("こんにちは ! !"))
 ```
-
+複数のタグや文字列を足し合わせることも可能です。
 Tags can also be added to each other, as well as strings:
 
 ```python
 document <= html.B("Hello, ") + "world !"
 ```
-
+タグを表す関数の最初の引数は、文字列、数字、別のタグが許されます。Pythonの"イテラブル"なオブジェクト(リスト、内包「コンプリヘンション」, 生成子「ジェネレーター」）が最初の引数になることもあります：この場合には、繰り返しの中で生成される全ての要素がタグに追加されます。
 The first argument of a tag function can be a string, a number, another tag. It can also be a Python "iterable" (list, comprehension, generator): in this case, all the elements produced in the iteration are added to the tag:
 
 ```python
