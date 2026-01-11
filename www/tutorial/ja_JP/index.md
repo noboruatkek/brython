@@ -196,23 +196,26 @@ document.select("td")
 要素の `id` 属性("#result") あるいは クラス属性(".classname")があります。`select()` の呼び出しの戻り値は常に要素のリストです。
 The argument passed to the `select()` method is a _CSS selector_. The most usual ones are: a tag name ("td"), the element's `id` attribute ("#result") or its attribute "class" (".classname"). The result of `select()` is always a list of elements.
 
-ページ上の要素に対して発生するエベントは正規化された名前を持っています。要素をクリックした場合には、"click"という名前のエベントが起動されます。
+ページ上の要素に対して発生するエベントは正規化された名前を持っています。要素をクリックした場合には、"click"という名前のエベントが起動されます。このプログラムでは、このエベントは関数の実行を引き起こします。この　要素ーエベントー関数の関係は次の文法で定義されます。
 The events that can occur on the elements of a page have a normalized name: when the user clicks on a button, the event called "click" is triggered. In the program, this event will provoque the execution of a function. The association betweeen element, event and function is defined by the syntax
 
 ```python
 element.bind("click", action)
 
+電卓プログラムでは、全てのボタンで "click" エベントに付いて同じ関数を関係づけます。
 For the calculator, we can associate the same function to the "click" event on all buttons by:
 
 ```python
 for button in document.select("td"):
     button.bind("click", action)
 ```
-
+Pythonの文法規則に合わせるため、 `action()` 関数はこれより前にプログラムのどこかで定義されている必要があります。
+このような "コールバック"関数は一つの引数を取ります。この引数はエベントを表現するオブジェクトです。
 To be compliant to Python syntax, the function `action()` must have been defined somewhere before in the program. Such "callback" functions take a single parameter, an object that represents the event.
 
-Complete program
-================
+完全なプログラム　Complete program
+================================================
+ここで示すプログラムは最小版の電卓プログラムです。　最重要の部分は　関数 `action(event)` です。
 Here is the code that manages a minimal version of the calculator. The most important part is in the function `action(event)`.
 
 ```python
@@ -258,6 +261,6 @@ for button in document.select("td"):
     button.bind("click", action)
 ```
 
-Result
-======
+結果　Result
+==================
 <iframe width="800", height="400" src="/gallery/calculator.html"></iframe>
