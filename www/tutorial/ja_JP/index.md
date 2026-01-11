@@ -111,36 +111,21 @@ The first argument of a tag function can be a string, a number, another tag. It 
 ```python
 document <= html.UL(html.LI(i) for i in range(5))
 ```
-
+タグの属性値[アトリビュー」はキーワード付きの関数引数としてタグに渡されます。
 Tag attributes are passed as keyword arguments to the function:
 
 ```python
 html.A("Brython", href="http://brython.info")
 ```
-
-Drawing the calculator
-======================
-We can draw our calculator as an HTML table.
-
-The first line is made of the result zone, followed by a reset button. The next 3 lines are the calculator touches, digits and operations.
-
-```python
-from browser import document, html
-
-calc = html.TABLE()
-calc <= html.TR(html.TH(html.DIV("0", id="result"), colspan=3) +
-                html.TD("C", id="clear"))
-lines = ["789/",
-         "456*",
-         "123-",
-         "0.=+"]
-
+　　　　　　　　　　　　　　　　　　　　　　　　　
 calc <= (html.TR(html.TD(x) for x in line) for line in lines)
 
 document <= calc
 ```
-
+Pythonの生成子を使う事で、読みやすさを損なうことなくプログラムのサイズを短くできます。
 Note the use of Python generators to reduce the program size, while keeping it readable.
+
+ここで電卓の見映えをよくするために `<TD>` タグに　スタイルシートを使って 装飾をつけましょう。
 
 Let's add style to the `<TD>` tags in a stylesheet so that the calculator looks better:
 
