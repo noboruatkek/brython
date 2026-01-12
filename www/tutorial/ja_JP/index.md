@@ -52,7 +52,7 @@ When you open the page, you should see the message "Hello !" printed on the brow
 
 ページの構造　(Page structure)
 ============================
-さあ、ページの中身の詳細を見ていきましょう。 `<head>` ゾーンの中では　javascript　のフィルド__`brython.js`__をロードしています。：これはBrythonを実行する中心機関です。このページの中のPythonスクリプトを見つけ出し、実行します。この例ではこれをCDNから入手してい流ので、PCにこれをインストールする必要はありません。バージョン番号((`brython@{implementation}`))についての注意: 新しいバージョンのBrythonに合わせて更新する事が可能です。
+さあ、ページの中身の詳細を見ていきましょう。 `<head>` ゾーンの中では　javascript　のフィルド__`brython.js`__をロードしています。：これはBrythonを実行する中心部分です。このページの中のPythonスクリプトを見つけ出し、実行します。この例ではこれをCDNから入手しているので、PCにこれをインストールする必要はありません。バージョン番号((`brython@{implementation}`))についての注意: 新しいバージョンのBrythonに合わせて更新する事が可能です。
 Let's take a look at the page contents. In the `<head>` zone we load the script __`brython.js`__ : it is the Brython engine, the program that will find and execute the Python scripts included in the page. In this example we get it from a CDN, so that there is nothing to install on the PC. Note the version number (`brython@{implementation}`) : it can be updated for each new Brython version.
 
 この　__`index.html`__　の中には次のスクリプトが記述されいます。
