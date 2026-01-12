@@ -189,13 +189,13 @@ The next step is to trigger an action when the user presses the calculator touch
 - for the C letter : reset the result zone
 
 ページに表示されている要素を取り扱うためには、プログラムはまずこれらの要素への参照を入手する必要があります。
-ボタンは `<TD>` タグを使って作成されましたので、これらの全てのタグへの参照を入手するためにh、次の文法を使います。
+ボタンは `<TD>` タグを使って作成されましたので、これらの全てのタグへの参照を入手するには次の文法を使います。
 To handle the elements printed in the page, the program need first to get a reference to them. The buttons have been created as `<TD>` tags; to get a reference to all these tags, the syntax is
 
 ```python
 document.select("td")
 ```
-`select` メソッドに渡された引数は　_CSS セレクタ_ です。　よく使われる　_CSS セレクタ_ には： タグの名前("tag"),
+`select` メソッドに渡された引数は　_CSS セレクタ_ です。よく使われる _CSS セレクタ_ には： タグの名前("tag"),
 要素の `id` 属性("#result") あるいは クラス属性(".classname")があります。`select()` 呼び出しの戻り値は常に要素のリストです。
 The argument passed to the `select()` method is a _CSS selector_. The most usual ones are: a tag name ("td"), the element's `id` attribute ("#result") or its attribute "class" (".classname"). The result of `select()` is always a list of elements.
 
@@ -213,19 +213,19 @@ For the calculator, we can associate the same function to the "click" event on a
 for button in document.select("td"):
     button.bind("click", action)
 ```
-Pythonの文法規則に合わせるため、 `action()` 関数はこれより前にプログラムのどこかで定義されている必要があります。
+Pythonの文法規則に合わせるため、`action()` 関数はこれより前にプログラムのどこかで定義されている必要があります。
 このような "コールバック"関数は一つの引数を取ります。この引数はエベントを表現するオブジェクトです。
 To be compliant to Python syntax, the function `action()` must have been defined somewhere before in the program. Such "callback" functions take a single parameter, an object that represents the event.
 
 完全なプログラム　Complete program
 ================================================
-ここで示すプログラムは最小版の電卓プログラムです。　最重要の部分は　関数 `action(event)` です。
+ここで示すプログラムは最小版の電卓プログラムです。　最重要の部分は 関数 `action(event)` です。
 Here is the code that manages a minimal version of the calculator. The most important part is in the function `action(event)`.
 
 ```python
 from browser import document, html
 
-# Construction de la calculatrice
+# 電卓の構築
 calc = html.TABLE()
 calc <= html.TR(html.TH(html.DIV("0", id="result"), colspan=3) +
                 html.TD("C"))
@@ -235,32 +235,32 @@ calc <= (html.TR(html.TD(x) for x in line) for line in lines)
 
 document <= calc
 
-result = document["result"] # direct acces to an element by its id
+result = document["result"] # 要素の id を使って直接要素の参照を取得する。
 
 def action(event):
-    """Handles the "click" event on a button of the calculator."""
-    # The element the user clicked on is the attribute "target" of the
-    # event object
+    """電卓のボタンでの"click"エベントを処理します。"""
+    # ユーザがクリックした要素の参照は、渡されたエベントオブジェクトの "target"属性
+    # に収められています。
     element = event.target
-    # The text printed on the button is the element's "text" attribute
+    # ボタンに表示されているテキストは、要素の "text" 属性です。
     value = element.text
-    if value not in "=C":
-        # update the result zone
+    if v　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　alue not in "=C":
+        # 結果領域を更新します。
         if result.text in ["0", "error"]:
             result.text = value
         else:
             result.text = result.text + value
     elif value == "C":
-        # reset
+        # リセット
         result.text = "0"
     elif value == "=":
-        # execute the formula in result zone
+        # 結果領域に表示されている式を評価します。
         try:
             result.text = eval(result.text)
         except:
             result.text = "error"
 
-# Associate function action() to the event "click" on all buttons
+# 全てのボタンで"click"エベントと関数 action() を結びつけます。
 for button in document.select("td"):
     button.bind("click", action)
 ```
