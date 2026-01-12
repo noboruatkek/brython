@@ -45,6 +45,8 @@ In an empty directory, save this page as __`index.html`__. To read it in the bro
 - use the File/Open menu: it is the most simple solution. It brings [some limitations](/static_doc/en/file_or_http.html) for an advanced use, but it works perfectly for this tutorial
 - チュートリアル用のウェブサーバーを立ち上げる。：例えば、python.org で提供されているPython言語を実行する環境が整っていれば、`python -m http.server` を作業用ディレクトリで実行しdてみましょう。サーバが立ち上がったら、ブラウザのアドレス欄に　_localhost:8000/index.html_　を入力します。
 - launch a web server : for instance, if the Python interpreter available from python.org is available on your machine, run `python -m http.server` in the file directory, then enter _localhost:8000/index.html_ in the browser address bar
+
+
 ページを開くと、ブラウザウィンドウには"こんにちは！"の文字が表示されるはずです。
 When you open the page, you should see the message "Hello !" printed on the browser window.
 
