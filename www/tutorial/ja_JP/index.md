@@ -1,4 +1,5 @@
-この自習資料は、Pythonプログラム言語を使って、ウェブブラウザ上で動作するアプリケーションを作成する方法を説明しています。電卓プログラムの作成を例に取ります。
+
+この自習資料は、Pythonプログラム言語を使って、ウェブブラウザ上で動作するアプリケーションを作成する方法を説明しています。電卓プログラムの作成を例にして、説明します。
 This tutorial explains how to develop an application that runs in the browser using the Python programming language. We will take the example of writing a calculator.
 
 この資料の自習には、テキストエディタがインターネット接続が可能なブラウザと共に必要です。
@@ -40,7 +41,7 @@ document <= "こんにちは！"
 空のディレクトリを作成し、このページを __`index.html`__　として保存しましょう。このファイルをブラウザで閲覧するのに二つの方法があります。
 In an empty directory, save this page as __`index.html`__. To read it in the browser, you have two options:
 
-- 「ファイル／開く」メニューを利用sるl： これは最も簡単な方法です。この方法は、進んだユーザにとっては、 [ちょっとした制限](/static_doc/en/file_or_http.html) がありまが、このチュートリアルを実行するには十分な方法です。
+- 「ファイル／開く」メニューを利用する： これは最も簡単な方法です。この方法は、進んだユーザにとっては、 [ちょっとした制限](/static_doc/en/file_or_http.html) がありますが、このチュートリアルを実行するには十分な方法です。
 - use the File/Open menu: it is the most simple solution. It brings [some limitations](/static_doc/en/file_or_http.html) for an advanced use, but it works perfectly for this tutorial
 - チュートリアル用のウェブサーバーを立ち上げる。：例えば、python.org で提供されているPython言語を実行する環境が整っていれば、`python -m http.server` を作業用ディレクトリで実行しdてみましょう。サーバが立ち上がったら、ブラウザのアドレス欄に　_localhost:8000/index.html_　を入力します。
 - launch a web server : for instance, if the Python interpreter available from python.org is available on your machine, run `python -m http.server` in the file directory, then enter _localhost:8000/index.html_ in the browser address bar
