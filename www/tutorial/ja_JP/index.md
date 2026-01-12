@@ -63,7 +63,7 @@ from browser import document
 
 document <= ""こんにちは !"
 ```
-この部分は、標準的なPythonプログラムに従って、モジュール　 __`browser`__ (この例では、モジュールはBrythoの中心部分　 __`brython.js`__　と共に配布されている）をインポート(import)することからはじめれれています。このモジュールには、ブラウザの窓のなかに表示される構成要素を参照する `document` が定義されています。
+この部分は、標準的なPythonプログラムに従って、モジュール __`browser`__ (この例では、モジュールはBrythoの中心部分 __`brython.js`__　と共に配布されている）をインポート(import)することからはじめられています。このモジュールには、ブラウザの窓のなかに表示される構成要素を参照する `document` が定義されています。
 This is a standard Python program, starting by the import of a module, __`browser`__ (in this case, a module shipped with the Brython engine __`brython.js`__). The module has an attribute `document` which references the content displayed in the browser window.
 ドキュメントにテキストを追加する、即ちブラウザ中でテキストを表示するのに、Brythonでは次の文法を使います。
 To add a text to the document - concretely, to display a text in the browser - the syntax used by Brython is
@@ -71,7 +71,8 @@ To add a text to the document - concretely, to display a text in the browser - t
 ```python
 document <= "こんにちは !"
 ```
-記号 ｀<=` は左向きの矢印と考えて良いでしょう。：　ウェブの文書(document)は新しい要素、ここでは"こんにちは !"という文字列です、を受け取ります。後で見るように、Brythonではウェブ文書とのやりとりを標準的なDOMの文法を使って記述することが可能です。　Brythonではプログラムが冗長になり過ぎないように、いくつかの短縮記法(ショートカット)が用意されています。
+
+記号 `<=` は左向きの矢印と考えて良いでしょう。：　ウェブの文書(document)は新しい要素、ここでは"こんにちは !"という文字列です、を受け取ります。後で見るように、Brythonではウェブ文書とのやりとりを標準的なDOMの文法を使って記述することが可能です。　Brythonではプログラムが冗長になり過ぎないように、いくつかの短縮記法(ショートカット)が用意されています。
 You can think of the `<=` sign as a left arrow : the document "receives" a new element, here the string "Hello !". You will see later that it is always possible to use the standardized DOM syntax to interact with the page, but Brython provides a few shortcuts to make the code less verbose.
 
 特にこの例では、記号 `<=` を使うことに躊躇する場合には標準的なDOM要素の `attach` メソッドを使えます。
@@ -96,7 +97,7 @@ from browser import document, html
 document <= html.B("こんにちは !")
 ```
 
-タグを入れ子にして使うこも可能です。
+タグを入れ子にして使うことも可能です。
 Tags can be nested:
 
 ```python
@@ -177,10 +178,9 @@ td{
 
 エベントの取り扱い　Event handling
 ==========================================
-次のステップは利用者が電卓のボタンを押した時に行うべき動作を起動することです。
+次のステップは利用者が電卓のボタンを押した時に行うべき動作を指定することです。
 The next step is to trigger an action when the user presses the calculator touches:
 
-- ボタンの種類 :　実行される動作
 - 数字と演算記号：数字あるいは演算記号を結果の領域に印刷します。
 - `=` 記号: 操作を実行し、結果を表示部分に印刷します。入力が適切でない場合には、エラーメッセージを表示します。
 - `C` ボタン: 表示領域をリセットします。
@@ -196,7 +196,7 @@ To handle the elements printed in the page, the program need first to get a refe
 document.select("td")
 ```
 `select` メソッドに渡された引数は　_CSS セレクタ_ です。　よく使われる　_CSS セレクタ_ には： タグの名前("tag"),
-要素の `id` 属性("#result") あるいは クラス属性(".classname")があります。`select()` の呼び出しの戻り値は常に要素のリストです。
+要素の `id` 属性("#result") あるいは クラス属性(".classname")があります。`select()` 呼び出しの戻り値は常に要素のリストです。
 The argument passed to the `select()` method is a _CSS selector_. The most usual ones are: a tag name ("td"), the element's `id` attribute ("#result") or its attribute "class" (".classname"). The result of `select()` is always a list of elements.
 
 ページ上の要素に対して発生するエベントは正規化された名前を持っています。要素をクリックした場合には、"click"という名前のエベントが起動されます。このプログラムでは、このエベントは関数の実行を引き起こします。この　要素ーエベントー関数の関係は次の文法で定義されます。
@@ -204,8 +204,9 @@ The events that can occur on the elements of a page have a normalized name: when
 
 ```python
 element.bind("click", action)
+```
 
-電卓プログラムでは、全てのボタンで "click" エベントに付いて同じ関数を関係づけます。
+この電卓プログラムでは、全てのボタンで "click" エベントに付いて同じ関数を関係づけます。
 For the calculator, we can associate the same function to the "click" event on all buttons by:
 
 ```python
